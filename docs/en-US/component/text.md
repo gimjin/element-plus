@@ -25,7 +25,7 @@ text/sizes
 
 ## Ellipsis
 
-:::demo Pass the `truncated` prop to render an ellipsis when the text exceeds the width of the viewport or max-width set.
+:::demo Pass the `truncated` prop to render an ellipsis when the text exceeds the width of the viewport or max-width set. `line-clamp` prop to render multiline ellipsis. `tooltip` prop can enable tooltip.
 
 text/truncated
 
@@ -51,15 +51,24 @@ text/mixed
 
 ### Attributes
 
-| Name      | Description        | Type                                                               | Default |
-| --------- | ------------------ | ------------------------------------------------------------------ | ------- |
-| type      | text type          | ^[enum]`'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | —       |
-| size      | text size          | ^[enum]`'large' \| 'default' \| 'small'`                           | default |
-| truncated | render ellipsis    | ^[boolean]                                                         | false   |
-| tag       | custom element tag | ^[string]                                                          | span    |
+| Name       | Description                       | Type                                                               | Default |
+| ---------- | --------------------------------- | ------------------------------------------------------------------ | ------- |
+| type       | text type                         | ^[enum]`'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | —       |
+| size       | text size                         | ^[enum]`'large' \| 'default' \| 'small'`                           | default |
+| truncated  | render ellipsis                   | ^[boolean]                                                         | false   |
+| line-clamp | maximum lines                     | ^[string] / ^[number]                                              | -       |
+| tag        | custom element tag                | ^[string]                                                          | span    |
+| tooltip    | when render ellipsis show tooltip | ^[boolean] / ^[object]`ElTooltipProps`                             | false   |
+
+### Events
+
+| Name     | Description                  | Type                                         |
+| -------- | ---------------------------- | -------------------------------------------- |
+| ellipsis | when ellipsis show or hidden | ^[Function]`(showEllipsis: boolean) => void` |
 
 ### Slots
 
-| Name    | Description     |
-| ------- | --------------- |
-| default | default content |
+| Name    | Description                     |
+| ------- | ------------------------------- |
+| default | default content                 |
+| tooltip | content of the ellipsis tooltip |
