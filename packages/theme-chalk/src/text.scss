@@ -24,6 +24,13 @@
     overflow: hidden;
   }
 
+  @include when(line-clamp) {
+    display: -webkit-inline-box;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
   @each $size in (large, default, small) {
     @include m($size) {
       @include set-css-var-value(
