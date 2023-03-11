@@ -1,4 +1,4 @@
-import { buildProps, definePropType } from '@element-plus/utils'
+import { buildProps, definePropType, isBoolean } from '@element-plus/utils'
 import { componentSizes } from '@element-plus/constants'
 import type { ElTooltipProps } from '@element-plus/components/tooltip'
 import type Text from './text.vue'
@@ -51,3 +51,8 @@ export const textProps = buildProps({
 
 export type TextProps = ExtractPropTypes<typeof textProps>
 export type TextInstance = InstanceType<typeof Text>
+
+export const textEmits = {
+  ellipsis: (showEllipsis: boolean) => isBoolean(showEllipsis),
+}
+export type TextEmits = typeof textEmits

@@ -58,7 +58,7 @@ text/mixed
 | truncated  | render ellipsis                   | ^[boolean]                                                         | false   |
 | line-clamp | maximum lines                     | ^[string] / ^[number]                                              | -       |
 | tag        | custom element tag                | ^[string]                                                          | span    |
-| tooltip    | when render ellipsis show tooltip | ^[boolean] / ^[object]`ElTooltipProps`                             | false   |
+| tooltip    | when show ellipsis enable tooltip | ^[boolean] / ^[object]`ElTooltipProps`                             | false   |
 
 ### Events
 

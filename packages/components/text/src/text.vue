@@ -22,15 +22,15 @@ import { useResizeObserver } from '@vueuse/core'
 import ElTooltip from '@element-plus/components/tooltip'
 import { useNamespace } from '@element-plus/hooks'
 import { useFormSize } from '@element-plus/components/form'
-import { textProps } from './text'
+import { isObject, isUndefined } from '@element-plus/utils'
+import { textEmits, textProps } from './text'
 
 defineOptions({
   name: 'ElText',
 })
 
 const props = defineProps(textProps)
-const slots = useSlots()
-const emits = defineEmits(['ellipsis'])
+const emit = defineEmits(textEmits)
 
 const textSize = useFormSize()
 const ns = useNamespace('text')
@@ -47,7 +47,7 @@ const textRef = ref<HTMLElement>()
 const showEllipsis = ref<boolean>(false)
 
 const tooltipOptions = computed(() => {
-  if (typeof props.tooltip === 'object') {
+  if (isObject(props.tooltip)) {
     return {
       ...props.tooltip,
       disabled: !showEllipsis.value,
@@ -63,7 +63,7 @@ function computeShowEllipsis(target: HTMLElement) {
   if (props.truncated) {
     showEllipsis.value = target.scrollWidth > target.clientWidth
   }
-  if (props.lineClamp !== undefined) {
+  if (!isUndefined(props.lineClamp)) {
     showEllipsis.value = target.scrollHeight > target.clientHeight
   }
 }
@@ -71,6 +71,8 @@ function computeShowEllipsis(target: HTMLElement) {
 useResizeObserver(textRef, (entries) => {
   computeShowEllipsis(entries[0].target as HTMLElement)
 })
+
+const slots = useSlots()
 
 watch(
   () => slots.default?.(),
@@ -83,7 +85,7 @@ watch(
 watch(
   () => showEllipsis.value,
   (showEllipsis) => {
-    emits('ellipsis', showEllipsis)
+    emit('ellipsis', showEllipsis)
   }
 )
 </script>
